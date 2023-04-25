@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabulator play</title>
+    <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
+
+
+</head>
+<body>
+    <h1>Golf League Players</h1>
+    <div>
+        <button id="download-csv">Download CSV</button>
+        <button id="download-json">Download JSON</button>
+        <button id="download-xlsx">Download XLSX</button>
+        <button id="download-pdf">Download PDF</button>
+        <button id="download-html">Download HTML</button>
+    </div>
+    <div id="example-table"></div>
+
+
+</body>
+
+</html>
+<script>
+//define some sample data
+//import data from './player.json' assert { type: 'json' };
+
+var tabledata = [
+    {
+        "firstName": "Jeff",
+        "lastName": "Lance",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Tim",
+        "lastName": "Lowrey",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Tim",
+        "lastName": "Smith",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Brent",
+        "lastName": "Jones",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "John",
+        "lastName": "Gertas",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Gregg",
+        "lastName": "Young",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Mark",
+        "lastName": "Pablo",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Dan",
+        "lastName": "Cervantes",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Bill",
+        "lastName": "Harrell",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Kris",
+        "lastName": "Loia",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Jeff",
+        "lastName": "Sherer",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Scott",
+        "lastName": "Rigby",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Doug",
+        "lastName": "Tinker",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Jp",
+        "lastName": "Taylor",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Karl",
+        "lastName": "Lewis",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Mark",
+        "lastName": "Yaeger",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Mike",
+        "lastName": "Sweeney",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Matt",
+        "lastName": "Harris",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Craig",
+        "lastName": "Prascher",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Steve",
+        "lastName": "Wu",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Robert",
+        "lastName": "McEntire",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Dave",
+        "lastName": "Daniels",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Gary",
+        "lastName": "Wiseman",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Tim",
+        "lastName": "Bogert",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Mike",
+        "lastName": "Thomas",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Phil",
+        "lastName": "Laas",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Bob",
+        "lastName": "Gibbons",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Rick",
+        "lastName": "Grimm",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Ed",
+        "lastName": "Rose",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Tom",
+        "lastName": "Vandenberge",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Doc",
+        "lastName": "Haggard",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Dennis",
+        "lastName": "Ardizzoni",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Tom",
+        "lastName": "Maguire",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Justin",
+        "lastName": "Seymour",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "David",
+        "lastName": "Kelly",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Seth",
+        "lastName": "Kelly",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Jim",
+        "lastName": "Gravley",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Richard",
+        "lastName": "Blanford",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Thomas",
+        "lastName": "Schattner",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Mark",
+        "lastName": "Weldele",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Kevin",
+        "lastName": "Livesey",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Tom",
+        "lastName": "Buttner",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Ken",
+        "lastName": "Burdette",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Garrett",
+        "lastName": "Young",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Steve",
+        "lastName": "Ropp",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Craig",
+        "lastName": "Morrison",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Lee",
+        "lastName": "Hubbard",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "David",
+        "lastName": "Montgomery",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Sue",
+        "lastName": "Poppens",
+        "gen": "F",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Gary",
+        "lastName": "Young",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Les",
+        "lastName": "Dutcher",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Bill",
+        "lastName": "Davis",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Shane",
+        "lastName": "Stelmach",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Frank",
+        "lastName": "Holomshek",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Rob",
+        "lastName": "Van Zeeland",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Ken",
+        "lastName": "Conway",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Scott",
+        "lastName": "Jones",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Ed",
+        "lastName": "MacHendrie",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Vash",
+        "lastName": "Narula",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Joan",
+        "lastName": "Garcia",
+        "gen": "F",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Jeff",
+        "lastName": "Kenny",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Stephen",
+        "lastName": "Graham",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Randy",
+        "lastName": "Depwe",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Steve",
+        "lastName": "Cardwell",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Bill",
+        "lastName": "Zakareckis",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Chris",
+        "lastName": "Davis",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Brian",
+        "lastName": "Depaul",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Dale",
+        "lastName": "Wommack",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Bob",
+        "lastName": "Spain",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Joe",
+        "lastName": "Opiola",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Richard",
+        "lastName": "Stubing",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Alex",
+        "lastName": "Hill",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Alfonso",
+        "lastName": "Cadena",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Josh",
+        "lastName": "Smith",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Greg",
+        "lastName": "Urquhart",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Jordan",
+        "lastName": "Knowles",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Casey",
+        "lastName": "Corcoran",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Mukesh",
+        "lastName": "Mirchandani",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Rex",
+        "lastName": "Foster",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "John",
+        "lastName": "Cooley",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Chuck",
+        "lastName": "Locke",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Chuck",
+        "lastName": "Roth",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Tim",
+        "lastName": "Taylor",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Sherrie",
+        "lastName": "Taylor",
+        "gen": "F",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Mike",
+        "lastName": "Saltmachia",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Marty",
+        "lastName": "Leister",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Ron",
+        "lastName": "Burdette",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "John",
+        "lastName": "Sopko",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Steve",
+        "lastName": "Brigante",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Bob",
+        "lastName": "Churchill",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Tom",
+        "lastName": "Lahutsky",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Dick",
+        "lastName": "Miller",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Mark",
+        "lastName": "Zahorik",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "John",
+        "lastName": "West",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "David",
+        "lastName": "Knowles",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Tim",
+        "lastName": "Halliday",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Mike",
+        "lastName": "Williamson",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Russell",
+        "lastName": "Jordan",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Brad",
+        "lastName": "Weldon",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Terry",
+        "lastName": "McLachlan",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Roger",
+        "lastName": "Lancaster",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "David",
+        "lastName": "Mauriello",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Wendall",
+        "lastName": "Ritz",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    },
+    {
+        "firstName": "Rick",
+        "lastName": "Garcia",
+        "gen": "M",
+        "email": " ",
+        "phone": " "
+    }
+]
+    
+ var table = new Tabulator("#example-table", {
+ 	height:500, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+ 	data:tabledata, //assign data to table
+ 	layout:"fitColumns", //fit columns to width of table (optional)
+ 	columns:[ //Define Table Columns
+	 	{title:"First", field:"firstName", width:100},
+	 	{title:"Last", field:"lastName", width:100},
+	 	{title:"Gender", field:"gen"},
+	 	{title:"Email", field:"email",hozAlign:"center"},
+ 	],
+});
+
+//trigger an alert message when the row is clicked
+table.on("rowClick", function(e, row){ 
+	alert("Row " + row.getData().id + " Clicked!!!!");
+});
+
+
+//trigger download of data.csv file
+document.getElementById("download-csv").addEventListener("click", function(){
+    table.download("csv", "data.csv");
+});
+
+//trigger download of data.json file
+document.getElementById("download-json").addEventListener("click", function(){
+    table.download("json", "data.json");
+});
+
+//trigger download of data.xlsx file
+document.getElementById("download-xlsx").addEventListener("click", function(){
+    table.download("xlsx", "data.xlsx", {sheetName:"My Data"});
+});
+
+//trigger download of data.pdf file
+document.getElementById("download-pdf").addEventListener("click", function(){
+    table.download("pdf", "data.pdf", {
+        orientation:"portrait", //set page orientation to portrait
+        title:"Example Report", //add title to report
+    });
+});
+
+//trigger download of data.html file
+document.getElementById("download-html").addEventListener("click", function(){
+    table.download("html", "data.html", {style:true});
+});
+
+
+
+</script>
+
+
+
+
